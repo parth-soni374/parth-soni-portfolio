@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Parth Soni | Software Engineer</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* NAVBAR */
+        header {
+            background: #222;
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        header ul li {
+            display: inline;
+            margin-left: 20px;
+        }
+
+        header ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        header ul li a:hover {
+            color: yellow;
+        }
+
+        /* HERO */
+        .hero {
+            height: 400px;
+            background: lightblue;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .btn {
+            margin-top: 15px;
+            padding: 12px 25px;
+            background: black;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background: #444;
+        }
+
+        section {
+            padding: 40px;
+            text-align: center;
+        }
+
+        /* PROJECT */
+        .cards {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .card {
+            background: #f4f4f4;
+            padding: 20px;
+            width: 300px;
+            border-radius: 8px;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        /* MOBILE */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+            }
+
+            header ul li {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Parth Soni</h1>
+    <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Skills</a></li>
+        <li><a href="#">Contact</a></li>
+    </ul>
+</header>
+
+<section class="hero">
+    <h2>Hi, I’m Parth Soni</h2>
+    <p>Software Engineer | Frontend Web Developer</p>
+    <p>I design and develop responsive, clean and user-friendly websites.</p>
+    <a href="#contact" class="btn">Contact Me</a>
+</section>
+
+<section>
+    <h2>About Me</h2>
+    <p>
+        I am a software engineer focused on frontend web development.
+        I build structured layouts, responsive designs,
+        and clean user interfaces using HTML and CSS.
+    </p>
+</section>
+
+<section>
+    <h2>Skills</h2>
+    <p>HTML, CSS, Responsive Web Design, Flexbox, Grid</p>
+</section>
+
+<section>
+    <h2>Projects</h2>
+
+    <div class="cards">
+        <div class="card">
+            <h3>Personal Portfolio Website</h3>
+            <p>
+                Designed and developed a responsive personal portfolio website
+                using HTML and CSS with clean UI and mobile-friendly layout.
+            </p>
+            <a href="https://github.com\parthsoni\parth-soni-portfolio" class="btn" target="-blank">
+                view Project
+            </a>
+        </div>
+    </div>
+</section>
+
+<section id="contact">
+    <h2>Contact</h2>
+    <p>Email:<a href="mailto:parthsoni.dev@gmail.com">parthsoni.dev@gmail.com</a></p>
+</section>
+
+<footer>
+    <p>&copy; 2026 Parth Soni | Software Engineer</p>
+</footer>
+
+</body>
+</html>
