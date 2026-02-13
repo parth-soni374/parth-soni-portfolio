@@ -94,6 +94,30 @@
             margin-top: 40px;
         }
 
+        #skills {
+            padding:50px;
+            text-align:center;
+        }
+
+        .skills {
+            margin:20px auto;
+            width:60%;
+        }
+
+        .progress {
+            background#add;
+            height:20px;
+            border-radius:20px;
+        }
+
+        .progress-bar {
+            height:100%;
+            border-radius:20px;
+        } 
+        
+        .html {width:90%;background:#ff5733;}
+        .css {width:80%;background:#2196f3;}
+        .js {width:70%;background:#f7df1e;}
         /* MOBILE */
         @media (max-width: 768px) {
             header {
@@ -135,10 +159,29 @@
         and clean user interfaces using HTML and CSS.
     </p>
 </section>
+    <section id="skills">
+    <h2>My Skills</h2>
 
-<section>
-    <h2>Skills</h2>
-    <p>HTML, CSS, Responsive Web Design, Flexbox, Grid</p>
+    <div class="skill">
+        <p>HTML</p>
+        <div class="progress">
+            <div class="progress-bar html"></div>
+        </div>
+    </div>
+
+    <div class="skill">
+        <p>CSS</p>
+        <div class="progress">
+            <div class="progress-bar css"></div>
+        </div>
+    </div>
+
+    <div class="skill">
+        <p>JavaScript</p>
+        <div class="progress">
+            <div class="progress-bar js"></div>
+        </div>
+    </div>
 </section>
 
 <section>
@@ -170,3 +213,4 @@
 </body>
 
 </html>
+
