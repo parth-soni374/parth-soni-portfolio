@@ -1,212 +1,204 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Parth Soni | Software Engineer</title>
+<title>Parth Soni | Software Engineer</title>
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial;
-        }
+<style>
 
-        html {
-            scroll-behavior: smooth;
-        }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial;
+}
 
-        /* NAVBAR */
-        header {
-            background: #222;
-            color: white;
-            padding: 15px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+body{
+background:#0f172a;
+color:white;
+}
 
-        header ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
+/* NAVBAR */
+header{
+position:fixed;
+width:100%;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(10px);
+padding:15px 40px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+z-index:1000;
+}
 
-        header ul li {
-            display: inline;
-            margin-left: 20px;
-        }
+header ul{
+list-style:none;
+}
 
-        header ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-        }
+header ul li{
+display:inline;
+margin-left:20px;
+}
 
-        header ul li a:hover {
-            color: yellow;
-        }
+header ul li a{
+color:white;
+text-decoration:none;
+font-weight:bold;
+transition:.3s;
+}
 
-        /* HERO */
-        .hero {
-            height: 400px;
-            background: linear-gradient(to right,#141e30,#243b55);
-            color:white;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 20px;
-        }
+header ul li a:hover{
+color:#38bdf8;
+}
 
-        .btn {
-            margin-top: 20px;
-            padding: 12px 30px;
-            background: #ff9800;
-            color: white;
-            text-decoration: none;
-            border-radius: 30px;
-            font-weight: bold;
-            transition: 0.3s ease;
-        }
+/* HERO */
+.hero{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+background:linear-gradient(135deg,#020617,#1e293b);
+}
 
-        .btn:hover {
-            background: #e68900;
-            transform: scale(1.05);
-        }
+.hero h2{
+font-size:48px;
+margin-bottom:10px;
+}
 
-        section {
-            padding: 50px 20px;
-            text-align: center;
-        }
+.hero p{
+opacity:.7;
+}
 
-        /* SKILLS */
-        .progress {
-            background:#ddd;
-            height:20px;
-            border-radius:20px;
-            margin-bottom:15px;
-        }
+.btn{
+margin-top:20px;
+padding:12px 30px;
+background:#38bdf8;
+border-radius:30px;
+text-decoration:none;
+color:black;
+font-weight:bold;
+transition:.3s;
+}
 
-        .progress-bar {
-            height:100%;
-            border-radius:20px;
-        }
+.btn:hover{
+transform:scale(1.05);
+}
 
-        .html {width:90%;background:#ff5733;}
-        .css {width:80%;background:#2196f3;}
-        .js {width:70%;background:#f7df1e;}
+/* SECTION */
+section{
+padding:100px 20px;
+text-align:center;
+}
 
-        /* PROJECTS */
-        #projects {
-            background: #f4f4f4;
-        }
+/* SKILLS */
+.skills{
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+}
 
-        .project-card {
-            background: white;
-            width: 280px;
-            padding: 20px;
-            margin: 15px;
-            display: inline-block;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            transition: 0.3s;
-        }
+.skill-card{
+background:#1e293b;
+padding:25px;
+width:200px;
+border-radius:10px;
+transition:.3s;
+}
 
-        .project-card:hover {
-            transform: translateY(-10px);
-        }
+.skill-card:hover{
+transform:translateY(-10px);
+background:#334155;
+}
 
-        /* FOOTER */
-        footer {
-            background: #222;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            margin-top: 40px;
-        }
+/* PROJECTS */
+.projects{
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+}
 
-        /* MOBILE */
-        @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-            }
+.project-card{
+background:#1e293b;
+width:260px;
+padding:20px;
+border-radius:10px;
+transition:.3s;
+}
 
-            header ul li {
-                display: block;
-                margin: 10px 0;
-            }
-        }
-    </style>
+.project-card:hover{
+transform:translateY(-10px);
+}
+
+/* FOOTER */
+footer{
+background:#020617;
+padding:20px;
+text-align:center;
+}
+
+</style>
 </head>
 
 <body>
 
 <header>
-    <h1>Parth Soni</h1>
-    <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
-    </ul>
+<h2>Parth Soni</h2>
+<ul>
+<li><a href="#home">Home</a></li>
+<li><a href="#skills">Skills</a></li>
+<li><a href="#projects">Projects</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
 </header>
 
 <section id="home" class="hero">
-    <h2>Hi, I’m Parth Soni</h2>
-    <p>Software Engineer | Frontend Web Developer</p>
-    <p>I design and develop responsive, clean and user-friendly websites.</p>
-    <a href="#contact" class="btn">Contact Me</a>
-</section>
-
-<section id="about">
-    <h2>About Me</h2>
-    <p>
-        I am a software engineer focused on frontend web development.
-        I build structured layouts, responsive designs,
-        and clean user interfaces using HTML and CSS.
-    </p>
+<h2>Software Engineer</h2>
+<p>Frontend Developer building modern web experiences</p>
+<a href="#contact" class="btn">Hire Me</a>
 </section>
 
 <section id="skills">
-    <h2>My Skills</h2>
-
-    <p>HTML</p>
-    <div class="progress">
-        <div class="progress-bar html"></div>
-    </div>
-
-    <p>CSS</p>
-    <div class="progress">
-        <div class="progress-bar css"></div>
-    </div>
-
-    <p>JavaScript</p>
-    <div class="progress">
-        <div class="progress-bar js"></div>
-    </div>
+<h2>Skills</h2>
+<br>
+<div class="skills">
+<div class="skill-card">HTML</div>
+<div class="skill-card">CSS</div>
+<div class="skill-card">JavaScript</div>
+<div class="skill-card">Responsive Design</div>
+</div>
 </section>
 
 <section id="projects">
-    <h2>My Projects</h2>
+<h2>Projects</h2>
+<br>
+<div class="projects">
+<div class="project-card">
+<h3>Portfolio</h3>
+<p>Personal portfolio website</p>
+</div>
 
-    <div class="project-card">
-        <h3>Portfolio Website</h3>
-        <p>Responsive personal portfolio using HTML & CSS.</p>
-    </div>
+<div class="project-card">
+<h3>Login Page</h3>
+<p>Modern login UI</p>
+</div>
 
-    <div class="project-card">
-        <h3>Login Page</h3>
-        <p>Modern login form design with clean UI.</p>
-    </div>
+<div class="project-card">
+<h3>Landing Page</h3>
+<p>Product landing design</p>
+</div>
+</div>
 </section>
 
 <section id="contact">
-    <h2>Contact</h2>
-    <p>Email: <a href="mailto:parthsoni.dev@gmail.com">parthsoni.dev@gmail.com</a></p>
+<h2>Contact</h2>
+<p>Email: parthsoni.dev@gmail.com</p>
 </section>
 
 <footer>
-    <p>&copy; 2026 Parth Soni | Software Engineer</p>
+<p>© 2026 Parth Soni</p>
 </footer>
 
 </body>
