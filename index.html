@@ -157,7 +157,7 @@ text-align:center;
 <section id="home" class="hero">
 <h2>Software Engineer</h2>
 <p>Frontend Developer building modern web experiences</p>
-<a href="#contact" class="btn">Hire Me</a>
+<a href="#contact" class="btn" onclick="hireMe()">Hire Me</a>
 </section>
 
 <section id="skills">
@@ -175,6 +175,7 @@ text-align:center;
 <h2>Projects</h2>
 <br>
 <div class="projects">
+
 <div class="project-card">
 <h3>Portfolio</h3>
 <p>Personal portfolio website</p>
@@ -189,6 +190,7 @@ text-align:center;
 <h3>Landing Page</h3>
 <p>Product landing design</p>
 </div>
+
 </div>
 </section>
 
@@ -200,6 +202,34 @@ text-align:center;
 <footer>
 <p>© 2026 Parth Soni</p>
 </footer>
+
+
+<script>
+
+/* Welcome Message */
+alert("Welcome to Parth Soni Portfolio");
+
+/* Hire Me Button Function */
+function hireMe(){
+alert("Thank you for visiting Parth Soni Portfolio!");
+}
+
+/* Smooth Scroll Navbar */
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+anchor.addEventListener("click", function(e) {
+
+e.preventDefault();
+
+document.querySelector(this.getAttribute("href")).scrollIntoView({
+behavior:"smooth"
+});
+
+});
+});
+
+</script>
+
 
 </body>
 </html>
