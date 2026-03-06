@@ -132,6 +132,21 @@ transition:.3s;
 transform:translateY(-10px);
 }
 
+.bar{
+width:100%;
+height:10px;
+background:#0f172a;
+border-radius:10px;
+margin-top:10px;
+}
+
+.progress{
+height:10px;
+background:#38bdf8;
+border-radius:10px;
+width:0%;
+}
+
 /* FOOTER */
 footer{
 background:#020617;
@@ -151,12 +166,17 @@ text-align:center;
 <li><a href="#skills">Skills</a></li>
 <li><a href="#projects">Projects</a></li>
 <li><a href="#contact">Contact</a></li>
+<li><button onclick="toggleMode()">Mode</button></li>
 </ul>
 </header>
 
 <section id="home" class="hero">
-<h2>Software Engineer</h2>
+<h2 id="typing"></h2>
+<p id="clock"></p>
 <p>Frontend Developer building modern web experiences</p>
+
+<p>Developer: Parth Soni | Age: 30</p>
+
 <a href="#contact" class="btn" onclick="hireMe()">Hire Me</a>
 </section>
 
@@ -164,10 +184,28 @@ text-align:center;
 <h2>Skills</h2>
 <br>
 <div class="skills">
-<div class="skill-card">HTML</div>
-<div class="skill-card">CSS</div>
-<div class="skill-card">JavaScript</div>
-<div class="skill-card">Responsive Design</div>
+
+<div class="skill-card">
+<p>HTML</p>
+<div class="bar">
+<div class="progress" id="html"></div>
+</div>
+</div>
+
+<div class="skill-card">
+<p>CSS</p>
+<div class="bar">
+<div class="progress" id="css"></div>
+</div>
+</div>
+
+<div class="skill-card">
+<p>JavaScript</p>
+<div class="bar">
+<div class="progress" id="js"></div>
+</div>
+</div>
+
 </div>
 </section>
 
@@ -196,7 +234,18 @@ text-align:center;
 
 <section id="contact">
 <h2>Contact</h2>
+
 <p>Email: parthsoni.dev@gmail.com</p>
+
+<br>
+
+<input type="text" id="username" placeholder="Enter your name">
+
+<br><br>
+
+<button onclick="submitForm()">Send</button>
+<p id="message"></p>
+
 </section>
 
 <footer>
@@ -209,14 +258,34 @@ text-align:center;
 /* Welcome Message */
 alert("Welcome to Parth Soni Portfolio");
 
-/* Hire Me Button Function */
+/* Hire Me Button */
 function hireMe(){
 alert("Thank you for visiting Parth Soni Portfolio!");
 }
 
-/* Smooth Scroll Navbar */
+
+/* Send Button Function */
+
+function submitForm(){
+
+let name = document.getElementById("username").value;
+
+if(name==""){
+alert("Please enter your name");
+}
+else{
+
+document.getElementById("message").innerText =
+"Hello " + name + " Welcome to Parth Soni Portfolio";
+
+}
+
+}
+
+/* Smooth Scroll */
 
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+
 anchor.addEventListener("click", function(e) {
 
 e.preventDefault();
@@ -226,7 +295,105 @@ behavior:"smooth"
 });
 
 });
+
 });
+
+
+
+/* Dark Light Mode */
+
+function toggleMode(){
+
+if(document.body.style.background == "white"){
+
+document.body.style.background = "#0f172a";
+document.body.style.color = "white";
+
+}
+else{
+
+document.body.style.background = "white";
+document.body.style.color = "black";
+
+}
+
+}
+
+
+/* Live Clock */
+
+setInterval(function(){
+
+let time = new Date();
+
+document.getElementById("clock").innerText = time.toLocaleTimeString();
+
+},1000);
+
+/* Typing Animation */
+
+let text = [
+"I am Web Developer",
+"I am JavaScript Developer",
+"I am Frontend Engineer"
+];
+
+let i = 0;
+let j = 0;
+let currentText = "";
+let isDeleting = false;
+
+function typeEffect(){
+
+currentText = text[i];
+
+if(!isDeleting){
+document.getElementById("typing").innerHTML =
+currentText.substring(0,j+1);
+
+j++;
+
+if(j == currentText.length){
+isDeleting = true;
+setTimeout(typeEffect,1000);
+return;
+}
+
+}
+else{
+
+document.getElementById("typing").innerHTML =
+currentText.substring(0,j-1);
+
+j--;
+
+if(j == 0){
+isDeleting = false;
+i++;
+
+if(i == text.length){
+i = 0;
+}
+
+}
+
+}
+
+setTimeout(typeEffect,100);
+
+}
+
+typeEffect();
+
+/* Skills Animation */
+
+setTimeout(function(){
+
+document.getElementById("html").style.width="90%";
+document.getElementById("css").style.width="85%";
+document.getElementById("js").style.width="75%";
+
+},1000);
 
 </script>
 
