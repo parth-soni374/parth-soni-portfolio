@@ -112,6 +112,22 @@ transform:translateY(-10px);
 background:#334155;
 }
 
+.bar{
+width:100%;
+height:10px;
+background:#0f172a;
+border-radius:10px;
+margin-top:10px;
+}
+
+.progress{
+height:10px;
+background:#38bdf8;
+border-radius:10px;
+width:0%;
+transition:1s;
+}
+
 /* PROJECTS */
 .projects{
 display:flex;
@@ -126,25 +142,40 @@ width:260px;
 padding:20px;
 border-radius:10px;
 transition:.3s;
+cursor:pointer;
 }
 
 .project-card:hover{
 transform:translateY(-10px);
 }
 
-.bar{
+/* POPUP */
+
+#popup{
+position:fixed;
+top:0;
+left:0;
 width:100%;
-height:10px;
-background:#0f172a;
-border-radius:10px;
-margin-top:10px;
+height:100%;
+background:rgba(0,0,0,0.8);
+display:none;
+justify-content:center;
+align-items:center;
 }
 
-.progress{
-height:10px;
-background:#38bdf8;
+.popup-box{
+background:white;
+color:black;
+padding:30px;
 border-radius:10px;
-width:0%;
+width:300px;
+text-align:center;
+}
+
+.close{
+cursor:pointer;
+font-weight:bold;
+color:red;
 }
 
 /* FOOTER */
@@ -183,6 +214,7 @@ text-align:center;
 <section id="skills">
 <h2>Skills</h2>
 <br>
+
 <div class="skills">
 
 <div class="skill-card">
@@ -212,25 +244,43 @@ text-align:center;
 <section id="projects">
 <h2>Projects</h2>
 <br>
+
 <div class="projects">
 
-<div class="project-card">
+<div class="project-card" onclick="openPopup('Portfolio Website Project')">
 <h3>Portfolio</h3>
 <p>Personal portfolio website</p>
 </div>
 
-<div class="project-card">
+<div class="project-card" onclick="openPopup('Login Page Project')">
 <h3>Login Page</h3>
 <p>Modern login UI</p>
 </div>
 
-<div class="project-card">
+<div class="project-card" onclick="openPopup('Landing Page Project')">
 <h3>Landing Page</h3>
 <p>Product landing design</p>
 </div>
 
 </div>
+
 </section>
+
+<!-- POPUP -->
+
+<div id="popup">
+
+<div class="popup-box">
+
+<p class="close" onclick="closePopup()">Close</p>
+
+<h3 id="popupText"></h3>
+
+<p>This project was created by Parth Soni.</p>
+
+</div>
+
+</div>
 
 <section id="contact">
 <h2>Contact</h2>
@@ -262,7 +312,6 @@ alert("Welcome to Parth Soni Portfolio");
 function hireMe(){
 alert("Thank you for visiting Parth Soni Portfolio!");
 }
-
 
 /* Send Button Function */
 
@@ -299,7 +348,6 @@ behavior:"smooth"
 });
 
 
-
 /* Dark Light Mode */
 
 function toggleMode(){
@@ -329,6 +377,7 @@ let time = new Date();
 document.getElementById("clock").innerText = time.toLocaleTimeString();
 
 },1000);
+
 
 /* Typing Animation */
 
@@ -395,8 +444,24 @@ document.getElementById("js").style.width="75%";
 
 },1000);
 
-</script>
 
+/* POPUP */
+
+function openPopup(project){
+
+document.getElementById("popup").style.display="flex";
+
+document.getElementById("popupText").innerText = project;
+
+}
+
+function closePopup(){
+
+document.getElementById("popup").style.display="none";
+
+}
+
+</script>
 
 </body>
 </html>
