@@ -23,13 +23,17 @@ overflow-x:hidden;
 header{
 position:fixed;
 width:100%;
-background:rgba(255,255,255,0.05);
-backdrop-filter:blur(10px);
 padding:15px 40px;
 display:flex;
 justify-content:space-between;
 align-items:center;
+transition:0.4s;
 z-index:1000;
+}
+
+header.scrolled{
+background:rgba(0,0,0,0.8);
+backdrop-filter:blur(10px);
 }
 
 header ul{
@@ -47,10 +51,6 @@ text-decoration:none;
 font-weight:bold;
 }
 
-header ul li a:hover{
-color:#38bdf8;
-}
-
 /* HERO */
 
 .hero{
@@ -60,7 +60,6 @@ flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
-background:linear-gradient(135deg,#020617,#1e293b);
 }
 
 /* BUTTON */
@@ -75,10 +74,6 @@ color:black;
 font-weight:bold;
 }
 
-.btn:hover{
-transform:scale(1.05);
-}
-
 /* SECTION */
 
 section{
@@ -86,7 +81,7 @@ padding:100px 20px;
 text-align:center;
 }
 
-/* SKILLS */
+/* GLASS CARDS */
 
 .skills{
 display:flex;
@@ -96,16 +91,19 @@ flex-wrap:wrap;
 }
 
 .skill-card{
-background:#1e293b;
+background:rgba(255,255,255,0.1);
+backdrop-filter:blur(10px);
 padding:25px;
 width:200px;
 border-radius:10px;
 }
 
+/* SKILL BAR */
+
 .bar{
 width:100%;
 height:10px;
-background:#0f172a;
+background:#111;
 border-radius:10px;
 margin-top:10px;
 }
@@ -118,6 +116,20 @@ width:0%;
 transition:1.5s;
 }
 
+/* PROJECT FILTER */
+
+.filter-btns{
+margin-bottom:30px;
+}
+
+.filter-btns button{
+margin:5px;
+padding:10px 20px;
+border:none;
+background:#38bdf8;
+cursor:pointer;
+}
+
 /* PROJECTS */
 
 .projects{
@@ -128,7 +140,8 @@ flex-wrap:wrap;
 }
 
 .project-card{
-background:#1e293b;
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(10px);
 width:260px;
 padding:20px;
 border-radius:10px;
@@ -170,21 +183,12 @@ padding:20px;
 text-align:center;
 }
 
-canvas{
-position:fixed;
-top:0;
-left:0;
-z-index:-1;
-}
-
 </style>
 </head>
 
 <body>
 
-<canvas id="bg"></canvas>
-
-<header>
+<header id="navbar">
 <h2>Parth Soni</h2>
 
 <ul>
@@ -193,13 +197,11 @@ z-index:-1;
 <li><a href="#projects">Projects</a></li>
 <li><a href="#contact">Contact</a></li>
 </ul>
-
 </header>
 
 <section id="home" class="hero">
 
 <h2 id="typing"></h2>
-
 <p id="clock"></p>
 
 <p>Frontend Developer building modern web experiences</p>
@@ -218,23 +220,17 @@ z-index:-1;
 
 <div class="skill-card">
 <p>HTML</p>
-<div class="bar">
-<div class="progress" id="html"></div>
-</div>
+<div class="bar"><div class="progress" id="html"></div></div>
 </div>
 
 <div class="skill-card">
 <p>CSS</p>
-<div class="bar">
-<div class="progress" id="css"></div>
-</div>
+<div class="bar"><div class="progress" id="css"></div></div>
 </div>
 
 <div class="skill-card">
 <p>JavaScript</p>
-<div class="bar">
-<div class="progress" id="js"></div>
-</div>
+<div class="bar"><div class="progress" id="js"></div></div>
 </div>
 
 </div>
@@ -245,38 +241,33 @@ z-index:-1;
 
 <h2>Projects</h2>
 
-<br>
+<div class="filter-btns">
+
+<button onclick="filterProjects('all')">All</button>
+<button onclick="filterProjects('html')">HTML</button>
+<button onclick="filterProjects('css')">CSS</button>
+<button onclick="filterProjects('js')">JavaScript</button>
+
+</div>
 
 <div class="projects">
 
-<div class="project-card" onclick="openPopup('Portfolio Website')">
-
+<div class="project-card html" onclick="openPopup('Portfolio Website')">
 <img src="https://picsum.photos/300/200">
-
 <h3>Portfolio</h3>
-
-<p>Personal portfolio website</p>
-
+<p>HTML Project</p>
 </div>
 
-<div class="project-card" onclick="openPopup('Login Page')">
-
+<div class="project-card css" onclick="openPopup('Login Page')">
 <img src="https://picsum.photos/300/201">
-
 <h3>Login Page</h3>
-
-<p>Modern login UI</p>
-
+<p>CSS UI Project</p>
 </div>
 
-<div class="project-card" onclick="openPopup('Landing Page')">
-
+<div class="project-card js" onclick="openPopup('Landing Page')">
 <img src="https://picsum.photos/300/202">
-
 <h3>Landing Page</h3>
-
-<p>Product landing design</p>
-
+<p>JavaScript Project</p>
 </div>
 
 </div>
@@ -316,9 +307,7 @@ z-index:-1;
 </section>
 
 <footer>
-
 <p>© 2026 Parth Soni</p>
-
 </footer>
 
 <script>
@@ -326,53 +315,48 @@ z-index:-1;
 /* CLOCK */
 
 setInterval(function(){
-
 let time=new Date();
-
 document.getElementById("clock").innerText=time.toLocaleTimeString();
-
 },1000);
 
 /* POPUP */
 
 function openPopup(name){
-
 document.getElementById("popup").style.display="flex";
-
 document.getElementById("projectName").innerText=name;
-
 }
 
 function closePopup(){
-
 document.getElementById("popup").style.display="none";
+}
+
+/* FILTER */
+
+function filterProjects(type){
+
+let projects=document.querySelectorAll(".project-card");
+
+projects.forEach(p=>{
+
+if(type==="all"){
+p.style.display="block";
+}
+else if(p.classList.contains(type)){
+p.style.display="block";
+}
+else{
+p.style.display="none";
+}
+
+});
 
 }
 
-/* CONTACT */
-
-function submitForm(){
-
-let name=document.getElementById("username").value;
-
-if(name==""){
-
-alert("Enter your name");
-
-}else{
-
-document.getElementById("message").innerText="Hello "+name+" thanks for visiting!";
-
-}
-
-}
-
-/* SKILLS */
+/* SKILLS ANIMATION */
 
 window.addEventListener("scroll",function(){
 
 let pos=document.getElementById("skills").getBoundingClientRect().top;
-
 let screen=window.innerHeight;
 
 if(pos<screen){
@@ -384,6 +368,34 @@ document.getElementById("js").style.width="75%";
 }
 
 });
+
+/* NAVBAR SCROLL */
+
+window.addEventListener("scroll",function(){
+
+let nav=document.getElementById("navbar");
+
+if(window.scrollY>50){
+nav.classList.add("scrolled");
+}else{
+nav.classList.remove("scrolled");
+}
+
+});
+
+/* CONTACT */
+
+function submitForm(){
+
+let name=document.getElementById("username").value;
+
+if(name==""){
+alert("Enter your name");
+}else{
+document.getElementById("message").innerText="Hello "+name+" thanks for visiting!";
+}
+
+}
 
 /* TYPING */
 
@@ -398,9 +410,7 @@ document.getElementById("typing").innerText=text[i];
 i++;
 
 if(i==text.length){
-
 i=0;
-
 }
 
 setTimeout(typing,2000);
@@ -408,60 +418,6 @@ setTimeout(typing,2000);
 }
 
 typing();
-
-/* ANIMATED BACKGROUND */
-
-const canvas=document.getElementById("bg");
-
-const ctx=canvas.getContext("2d");
-
-canvas.width=window.innerWidth;
-
-canvas.height=window.innerHeight;
-
-let particles=[];
-
-for(let i=0;i<80;i++){
-
-particles.push({
-
-x:Math.random()*canvas.width,
-
-y:Math.random()*canvas.height,
-
-r:Math.random()*2,
-
-d:Math.random()*1
-
-});
-
-}
-
-function draw(){
-
-ctx.clearRect(0,0,canvas.width,canvas.height);
-
-ctx.fillStyle="white";
-
-particles.forEach(p=>{
-
-ctx.beginPath();
-
-ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-
-ctx.fill();
-
-p.y+=p.d;
-
-if(p.y>canvas.height)p.y=0;
-
-});
-
-requestAnimationFrame(draw);
-
-}
-
-draw();
 
 </script>
 
