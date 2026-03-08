@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,6 +17,27 @@ body{
 background:#0f172a;
 color:white;
 overflow-x:hidden;
+cursor:none;
+transition:0.4s;
+}
+
+body.light{
+background:white;
+color:black;
+}
+
+/* CUSTOM CURSOR */
+
+.cursor{
+width:20px;
+height:20px;
+border:2px solid #38bdf8;
+border-radius:50%;
+position:fixed;
+pointer-events:none;
+transform:translate(-50%,-50%);
+transition:0.1s;
+z-index:2000;
 }
 
 /* NAVBAR */
@@ -72,6 +94,7 @@ border-radius:30px;
 text-decoration:none;
 color:black;
 font-weight:bold;
+cursor:pointer;
 }
 
 /* SECTION */
@@ -81,7 +104,7 @@ padding:100px 20px;
 text-align:center;
 }
 
-/* GLASS CARDS */
+/* SKILLS */
 
 .skills{
 display:flex;
@@ -98,8 +121,6 @@ width:200px;
 border-radius:10px;
 }
 
-/* SKILL BAR */
-
 .bar{
 width:100%;
 height:10px;
@@ -114,20 +135,6 @@ background:#38bdf8;
 border-radius:10px;
 width:0%;
 transition:1.5s;
-}
-
-/* PROJECT FILTER */
-
-.filter-btns{
-margin-bottom:30px;
-}
-
-.filter-btns button{
-margin:5px;
-padding:10px 20px;
-border:none;
-background:#38bdf8;
-cursor:pointer;
 }
 
 /* PROJECTS */
@@ -188,7 +195,10 @@ text-align:center;
 
 <body>
 
+<div class="cursor" id="cursor"></div>
+
 <header id="navbar">
+
 <h2>Parth Soni</h2>
 
 <ul>
@@ -196,12 +206,15 @@ text-align:center;
 <li><a href="#skills">Skills</a></li>
 <li><a href="#projects">Projects</a></li>
 <li><a href="#contact">Contact</a></li>
+<li><button onclick="toggleMode()">Mode</button></li>
 </ul>
+
 </header>
 
 <section id="home" class="hero">
 
 <h2 id="typing"></h2>
+
 <p id="clock"></p>
 
 <p>Frontend Developer building modern web experiences</p>
@@ -241,30 +254,23 @@ text-align:center;
 
 <h2>Projects</h2>
 
-<div class="filter-btns">
-
-<button onclick="filterProjects('all')">All</button>
-<button onclick="filterProjects('html')">HTML</button>
-<button onclick="filterProjects('css')">CSS</button>
-<button onclick="filterProjects('js')">JavaScript</button>
-
-</div>
+<br>
 
 <div class="projects">
 
-<div class="project-card html" onclick="openPopup('Portfolio Website')">
+<div class="project-card" onclick="openPopup('Portfolio Website')">
 <img src="https://picsum.photos/300/200">
 <h3>Portfolio</h3>
 <p>HTML Project</p>
 </div>
 
-<div class="project-card css" onclick="openPopup('Login Page')">
+<div class="project-card" onclick="openPopup('Login Page')">
 <img src="https://picsum.photos/300/201">
 <h3>Login Page</h3>
 <p>CSS UI Project</p>
 </div>
 
-<div class="project-card js" onclick="openPopup('Landing Page')">
+<div class="project-card" onclick="openPopup('Landing Page')">
 <img src="https://picsum.photos/300/202">
 <h3>Landing Page</h3>
 <p>JavaScript Project</p>
@@ -281,6 +287,10 @@ text-align:center;
 <h3 id="projectName"></h3>
 
 <p>This project was built using HTML CSS JavaScript</p>
+
+<button onclick="openGithub()">View GitHub</button>
+
+<br><br>
 
 <button onclick="closePopup()">Close</button>
 
@@ -307,7 +317,9 @@ text-align:center;
 </section>
 
 <footer>
+
 <p>© 2026 Parth Soni</p>
+
 </footer>
 
 <script>
@@ -330,29 +342,17 @@ function closePopup(){
 document.getElementById("popup").style.display="none";
 }
 
-/* FILTER */
-
-function filterProjects(type){
-
-let projects=document.querySelectorAll(".project-card");
-
-projects.forEach(p=>{
-
-if(type==="all"){
-p.style.display="block";
-}
-else if(p.classList.contains(type)){
-p.style.display="block";
-}
-else{
-p.style.display="none";
+function openGithub(){
+window.open("https://github.com","_blank");
 }
 
-});
+/* DARK MODE */
 
+function toggleMode(){
+document.body.classList.toggle("light");
 }
 
-/* SKILLS ANIMATION */
+/* SKILLS */
 
 window.addEventListener("scroll",function(){
 
@@ -419,7 +419,19 @@ setTimeout(typing,2000);
 
 typing();
 
+/* CUSTOM CURSOR */
+
+document.addEventListener("mousemove",function(e){
+
+let cursor=document.getElementById("cursor");
+
+cursor.style.left=e.clientX+"px";
+cursor.style.top=e.clientY+"px";
+
+});
+
 </script>
 
 </body>
 </html>
+```
