@@ -15,7 +15,7 @@ font-family:Arial;
 body{
 background:#0f172a;
 color:white;
-transition:0.5s;
+overflow-x:hidden;
 }
 
 /* NAVBAR */
@@ -45,7 +45,6 @@ header ul li a{
 color:white;
 text-decoration:none;
 font-weight:bold;
-transition:.3s;
 }
 
 header ul li a:hover{
@@ -64,11 +63,6 @@ text-align:center;
 background:linear-gradient(135deg,#020617,#1e293b);
 }
 
-.hero h2{
-font-size:48px;
-margin-bottom:10px;
-}
-
 /* BUTTON */
 
 .btn{
@@ -79,7 +73,6 @@ border-radius:30px;
 text-decoration:none;
 color:black;
 font-weight:bold;
-transition:.3s;
 }
 
 .btn:hover{
@@ -107,11 +100,6 @@ background:#1e293b;
 padding:25px;
 width:200px;
 border-radius:10px;
-transition:.3s;
-}
-
-.skill-card:hover{
-transform:translateY(-10px);
 }
 
 .bar{
@@ -145,11 +133,12 @@ width:260px;
 padding:20px;
 border-radius:10px;
 cursor:pointer;
-transition:.3s;
 }
 
-.project-card:hover{
-transform:translateY(-10px);
+.project-card img{
+width:100%;
+border-radius:10px;
+margin-bottom:10px;
 }
 
 /* POPUP */
@@ -175,20 +164,17 @@ width:300px;
 text-align:center;
 }
 
-.popup-box button{
-margin-top:10px;
-padding:10px 20px;
-border:none;
-background:#38bdf8;
-cursor:pointer;
-}
-
-/* FOOTER */
-
 footer{
 background:#020617;
 padding:20px;
 text-align:center;
+}
+
+canvas{
+position:fixed;
+top:0;
+left:0;
+z-index:-1;
 }
 
 </style>
@@ -196,31 +182,36 @@ text-align:center;
 
 <body>
 
+<canvas id="bg"></canvas>
+
 <header>
 <h2>Parth Soni</h2>
+
 <ul>
 <li><a href="#home">Home</a></li>
 <li><a href="#skills">Skills</a></li>
 <li><a href="#projects">Projects</a></li>
 <li><a href="#contact">Contact</a></li>
-<li><button onclick="toggleMode()">Mode</button></li>
 </ul>
+
 </header>
 
 <section id="home" class="hero">
 
 <h2 id="typing"></h2>
+
 <p id="clock"></p>
 
 <p>Frontend Developer building modern web experiences</p>
 
-<a href="#contact" class="btn">Hire Me</a>
+<a href="#" class="btn">Download Resume</a>
 
 </section>
 
 <section id="skills">
 
 <h2>Skills</h2>
+
 <br>
 
 <div class="skills">
@@ -253,30 +244,44 @@ text-align:center;
 <section id="projects">
 
 <h2>Projects</h2>
+
 <br>
 
 <div class="projects">
 
 <div class="project-card" onclick="openPopup('Portfolio Website')">
+
+<img src="https://picsum.photos/300/200">
+
 <h3>Portfolio</h3>
+
 <p>Personal portfolio website</p>
+
 </div>
 
 <div class="project-card" onclick="openPopup('Login Page')">
+
+<img src="https://picsum.photos/300/201">
+
 <h3>Login Page</h3>
+
 <p>Modern login UI</p>
+
 </div>
 
 <div class="project-card" onclick="openPopup('Landing Page')">
+
+<img src="https://picsum.photos/300/202">
+
 <h3>Landing Page</h3>
+
 <p>Product landing design</p>
+
 </div>
 
 </div>
 
 </section>
-
-<!-- POPUP -->
 
 <div id="popup">
 
@@ -286,8 +291,6 @@ text-align:center;
 
 <p>This project was built using HTML CSS JavaScript</p>
 
-<button onclick="openGithub()">View GitHub</button>
-<br><br>
 <button onclick="closePopup()">Close</button>
 
 </div>
@@ -330,24 +333,6 @@ document.getElementById("clock").innerText=time.toLocaleTimeString();
 
 },1000);
 
-/* DARK MODE */
-
-function toggleMode(){
-
-if(document.body.style.background=="white"){
-
-document.body.style.background="#0f172a";
-document.body.style.color="white";
-
-}else{
-
-document.body.style.background="white";
-document.body.style.color="black";
-
-}
-
-}
-
 /* POPUP */
 
 function openPopup(name){
@@ -363,30 +348,6 @@ function closePopup(){
 document.getElementById("popup").style.display="none";
 
 }
-
-function openGithub(){
-
-alert("GitHub link add karo yaha");
-
-}
-
-/* SKILLS ANIMATION */
-
-window.addEventListener("scroll",function(){
-
-let position=document.getElementById("skills").getBoundingClientRect().top;
-
-let screen=window.innerHeight;
-
-if(position<screen){
-
-document.getElementById("html").style.width="90%";
-document.getElementById("css").style.width="85%";
-document.getElementById("js").style.width="75%";
-
-}
-
-});
 
 /* CONTACT */
 
@@ -405,6 +366,24 @@ document.getElementById("message").innerText="Hello "+name+" thanks for visiting
 }
 
 }
+
+/* SKILLS */
+
+window.addEventListener("scroll",function(){
+
+let pos=document.getElementById("skills").getBoundingClientRect().top;
+
+let screen=window.innerHeight;
+
+if(pos<screen){
+
+document.getElementById("html").style.width="90%";
+document.getElementById("css").style.width="85%";
+document.getElementById("js").style.width="75%";
+
+}
+
+});
 
 /* TYPING */
 
@@ -429,6 +408,60 @@ setTimeout(typing,2000);
 }
 
 typing();
+
+/* ANIMATED BACKGROUND */
+
+const canvas=document.getElementById("bg");
+
+const ctx=canvas.getContext("2d");
+
+canvas.width=window.innerWidth;
+
+canvas.height=window.innerHeight;
+
+let particles=[];
+
+for(let i=0;i<80;i++){
+
+particles.push({
+
+x:Math.random()*canvas.width,
+
+y:Math.random()*canvas.height,
+
+r:Math.random()*2,
+
+d:Math.random()*1
+
+});
+
+}
+
+function draw(){
+
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+ctx.fillStyle="white";
+
+particles.forEach(p=>{
+
+ctx.beginPath();
+
+ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+
+ctx.fill();
+
+p.y+=p.d;
+
+if(p.y>canvas.height)p.y=0;
+
+});
+
+requestAnimationFrame(draw);
+
+}
+
+draw();
 
 </script>
 
