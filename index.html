@@ -15,9 +15,11 @@ font-family:Arial;
 body{
 background:#0f172a;
 color:white;
+transition:0.5s;
 }
 
 /* NAVBAR */
+
 header{
 position:fixed;
 width:100%;
@@ -51,6 +53,7 @@ color:#38bdf8;
 }
 
 /* HERO */
+
 .hero{
 height:100vh;
 display:flex;
@@ -66,9 +69,7 @@ font-size:48px;
 margin-bottom:10px;
 }
 
-.hero p{
-opacity:.7;
-}
+/* BUTTON */
 
 .btn{
 margin-top:20px;
@@ -86,12 +87,14 @@ transform:scale(1.05);
 }
 
 /* SECTION */
+
 section{
 padding:100px 20px;
 text-align:center;
 }
 
 /* SKILLS */
+
 .skills{
 display:flex;
 justify-content:center;
@@ -109,7 +112,6 @@ transition:.3s;
 
 .skill-card:hover{
 transform:translateY(-10px);
-background:#334155;
 }
 
 .bar{
@@ -125,10 +127,11 @@ height:10px;
 background:#38bdf8;
 border-radius:10px;
 width:0%;
-transition:1s;
+transition:1.5s;
 }
 
 /* PROJECTS */
+
 .projects{
 display:flex;
 justify-content:center;
@@ -141,8 +144,8 @@ background:#1e293b;
 width:260px;
 padding:20px;
 border-radius:10px;
-transition:.3s;
 cursor:pointer;
+transition:.3s;
 }
 
 .project-card:hover{
@@ -172,13 +175,16 @@ width:300px;
 text-align:center;
 }
 
-.close{
+.popup-box button{
+margin-top:10px;
+padding:10px 20px;
+border:none;
+background:#38bdf8;
 cursor:pointer;
-font-weight:bold;
-color:red;
 }
 
 /* FOOTER */
+
 footer{
 background:#020617;
 padding:20px;
@@ -202,16 +208,18 @@ text-align:center;
 </header>
 
 <section id="home" class="hero">
+
 <h2 id="typing"></h2>
 <p id="clock"></p>
+
 <p>Frontend Developer building modern web experiences</p>
 
-<p>Developer: Parth Soni | Age: 30</p>
+<a href="#contact" class="btn">Hire Me</a>
 
-<a href="#contact" class="btn" onclick="hireMe()">Hire Me</a>
 </section>
 
 <section id="skills">
+
 <h2>Skills</h2>
 <br>
 
@@ -239,25 +247,27 @@ text-align:center;
 </div>
 
 </div>
+
 </section>
 
 <section id="projects">
+
 <h2>Projects</h2>
 <br>
 
 <div class="projects">
 
-<div class="project-card" onclick="openPopup('Portfolio Website Project')">
+<div class="project-card" onclick="openPopup('Portfolio Website')">
 <h3>Portfolio</h3>
 <p>Personal portfolio website</p>
 </div>
 
-<div class="project-card" onclick="openPopup('Login Page Project')">
+<div class="project-card" onclick="openPopup('Login Page')">
 <h3>Login Page</h3>
 <p>Modern login UI</p>
 </div>
 
-<div class="project-card" onclick="openPopup('Landing Page Project')">
+<div class="project-card" onclick="openPopup('Landing Page')">
 <h3>Landing Page</h3>
 <p>Product landing design</p>
 </div>
@@ -272,17 +282,20 @@ text-align:center;
 
 <div class="popup-box">
 
-<p class="close" onclick="closePopup()">Close</p>
+<h3 id="projectName"></h3>
 
-<h3 id="popupText"></h3>
+<p>This project was built using HTML CSS JavaScript</p>
 
-<p>This project was created by Parth Soni.</p>
+<button onclick="openGithub()">View GitHub</button>
+<br><br>
+<button onclick="closePopup()">Close</button>
 
 </div>
 
 </div>
 
 <section id="contact">
+
 <h2>Contact</h2>
 
 <p>Email: parthsoni.dev@gmail.com</p>
@@ -294,164 +307,54 @@ text-align:center;
 <br><br>
 
 <button onclick="submitForm()">Send</button>
+
 <p id="message"></p>
 
 </section>
 
 <footer>
-<p>© 2026 Parth Soni</p>
-</footer>
 
+<p>© 2026 Parth Soni</p>
+
+</footer>
 
 <script>
 
-/* Welcome Message */
-alert("Welcome to Parth Soni Portfolio");
-
-/* Hire Me Button */
-function hireMe(){
-alert("Thank you for visiting Parth Soni Portfolio!");
-}
-
-/* Send Button Function */
-
-function submitForm(){
-
-let name = document.getElementById("username").value;
-
-if(name==""){
-alert("Please enter your name");
-}
-else{
-
-document.getElementById("message").innerText =
-"Hello " + name + " Welcome to Parth Soni Portfolio";
-
-}
-
-}
-
-/* Smooth Scroll */
-
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-
-anchor.addEventListener("click", function(e) {
-
-e.preventDefault();
-
-document.querySelector(this.getAttribute("href")).scrollIntoView({
-behavior:"smooth"
-});
-
-});
-
-});
-
-
-/* Dark Light Mode */
-
-function toggleMode(){
-
-if(document.body.style.background == "white"){
-
-document.body.style.background = "#0f172a";
-document.body.style.color = "white";
-
-}
-else{
-
-document.body.style.background = "white";
-document.body.style.color = "black";
-
-}
-
-}
-
-
-/* Live Clock */
+/* CLOCK */
 
 setInterval(function(){
 
-let time = new Date();
+let time=new Date();
 
-document.getElementById("clock").innerText = time.toLocaleTimeString();
-
-},1000);
-
-
-/* Typing Animation */
-
-let text = [
-"I am Web Developer",
-"I am JavaScript Developer",
-"I am Frontend Engineer"
-];
-
-let i = 0;
-let j = 0;
-let currentText = "";
-let isDeleting = false;
-
-function typeEffect(){
-
-currentText = text[i];
-
-if(!isDeleting){
-document.getElementById("typing").innerHTML =
-currentText.substring(0,j+1);
-
-j++;
-
-if(j == currentText.length){
-isDeleting = true;
-setTimeout(typeEffect,1000);
-return;
-}
-
-}
-else{
-
-document.getElementById("typing").innerHTML =
-currentText.substring(0,j-1);
-
-j--;
-
-if(j == 0){
-isDeleting = false;
-i++;
-
-if(i == text.length){
-i = 0;
-}
-
-}
-
-}
-
-setTimeout(typeEffect,100);
-
-}
-
-typeEffect();
-
-/* Skills Animation */
-
-setTimeout(function(){
-
-document.getElementById("html").style.width="90%";
-document.getElementById("css").style.width="85%";
-document.getElementById("js").style.width="75%";
+document.getElementById("clock").innerText=time.toLocaleTimeString();
 
 },1000);
 
+/* DARK MODE */
+
+function toggleMode(){
+
+if(document.body.style.background=="white"){
+
+document.body.style.background="#0f172a";
+document.body.style.color="white";
+
+}else{
+
+document.body.style.background="white";
+document.body.style.color="black";
+
+}
+
+}
 
 /* POPUP */
 
-function openPopup(project){
+function openPopup(name){
 
 document.getElementById("popup").style.display="flex";
 
-document.getElementById("popupText").innerText = project;
+document.getElementById("projectName").innerText=name;
 
 }
 
@@ -460,6 +363,72 @@ function closePopup(){
 document.getElementById("popup").style.display="none";
 
 }
+
+function openGithub(){
+
+alert("GitHub link add karo yaha");
+
+}
+
+/* SKILLS ANIMATION */
+
+window.addEventListener("scroll",function(){
+
+let position=document.getElementById("skills").getBoundingClientRect().top;
+
+let screen=window.innerHeight;
+
+if(position<screen){
+
+document.getElementById("html").style.width="90%";
+document.getElementById("css").style.width="85%";
+document.getElementById("js").style.width="75%";
+
+}
+
+});
+
+/* CONTACT */
+
+function submitForm(){
+
+let name=document.getElementById("username").value;
+
+if(name==""){
+
+alert("Enter your name");
+
+}else{
+
+document.getElementById("message").innerText="Hello "+name+" thanks for visiting!";
+
+}
+
+}
+
+/* TYPING */
+
+let text=["I am Web Developer","I build websites","I love coding"];
+
+let i=0;
+
+function typing(){
+
+document.getElementById("typing").innerText=text[i];
+
+i++;
+
+if(i==text.length){
+
+i=0;
+
+}
+
+setTimeout(typing,2000);
+
+}
+
+typing();
 
 </script>
 
