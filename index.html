@@ -13,7 +13,7 @@ box-sizing:border-box;
 font-family:Arial;
 }
 
-/* LOADING SCREEN */
+/* LOADER */
 
 #loader{
 position:fixed;
@@ -43,7 +43,7 @@ background:white;
 color:black;
 }
 
-/* CUSTOM CURSOR */
+/* CURSOR */
 
 .cursor{
 width:20px;
@@ -53,11 +53,10 @@ border-radius:50%;
 position:fixed;
 pointer-events:none;
 transform:translate(-50%,-50%);
-transition:0.1s;
 z-index:2000;
 }
 
-/* PARTICLES BACKGROUND */
+/* PARTICLES */
 
 canvas{
 position:fixed;
@@ -123,7 +122,7 @@ font-weight:bold;
 cursor:pointer;
 }
 
-/* SECTION */
+/* SECTIONS */
 
 section{
 padding:100px 20px;
@@ -163,28 +162,26 @@ width:0%;
 transition:1.5s;
 }
 
-/* PROJECTS */
+/* PROJECT SLIDER */
 
-.projects{
+.slider{
 display:flex;
-justify-content:center;
+overflow-x:auto;
 gap:20px;
-flex-wrap:wrap;
+padding:20px;
 }
 
 .project-card{
+min-width:260px;
 background:rgba(255,255,255,0.08);
-backdrop-filter:blur(10px);
-width:260px;
 padding:20px;
 border-radius:10px;
 cursor:pointer;
 transition:0.4s;
-transform-style:preserve-3d;
 }
 
 .project-card:hover{
-transform:rotateY(10deg) rotateX(10deg) scale(1.05);
+transform:scale(1.05);
 }
 
 .project-card img{
@@ -214,6 +211,31 @@ padding:30px;
 border-radius:10px;
 width:300px;
 text-align:center;
+}
+
+/* CHATBOT */
+
+#chatbot{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#38bdf8;
+color:black;
+padding:15px;
+border-radius:50%;
+cursor:pointer;
+}
+
+#chatbox{
+position:fixed;
+bottom:80px;
+right:20px;
+width:250px;
+background:white;
+color:black;
+padding:15px;
+border-radius:10px;
+display:none;
 }
 
 /* FOOTER */
@@ -257,7 +279,7 @@ text-align:center;
 
 <p>Frontend Developer building modern web experiences</p>
 
-<a href="#" class="btn">Download Resume</a>
+<a href="resume.pdf" download class="btn">Download Resume</a>
 
 </section>
 
@@ -292,9 +314,7 @@ text-align:center;
 
 <h2>Projects</h2>
 
-<br>
-
-<div class="projects">
+<div class="slider">
 
 <div class="project-card" onclick="openPopup('Portfolio Website')">
 <img src="https://picsum.photos/300/200">
@@ -355,10 +375,15 @@ text-align:center;
 </section>
 
 <footer>
-
 <p>© 2026 Parth Soni</p>
-
 </footer>
+
+<div id="chatbot" onclick="toggleChat()">💬</div>
+
+<div id="chatbox">
+<p><b>Portfolio Bot</b></p>
+<p>Hello! Ask about skills or projects.</p>
+</div>
 
 <script>
 
@@ -413,7 +438,7 @@ document.getElementById("js").style.width="75%";
 
 });
 
-/* NAVBAR SCROLL */
+/* NAVBAR */
 
 window.addEventListener("scroll",function(){
 
@@ -463,7 +488,7 @@ setTimeout(typing,2000);
 
 typing();
 
-/* CUSTOM CURSOR */
+/* CURSOR */
 
 document.addEventListener("mousemove",function(e){
 
@@ -473,6 +498,20 @@ cursor.style.left=e.clientX+"px";
 cursor.style.top=e.clientY+"px";
 
 });
+
+/* CHATBOT */
+
+function toggleChat(){
+
+let chat=document.getElementById("chatbox");
+
+if(chat.style.display=="block"){
+chat.style.display="none";
+}else{
+chat.style.display="block";
+}
+
+}
 
 /* PARTICLES */
 
